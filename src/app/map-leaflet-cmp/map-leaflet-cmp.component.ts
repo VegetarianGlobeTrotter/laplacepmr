@@ -161,7 +161,25 @@ export class MapLeafletCmpComponent implements OnInit {
 
         img.src = '../../assets/images/logoIGN.png';
         img.style.width = '30px';
-
+        L.DomEvent.on(img, 'click', function (ev) {
+          map.locate({setView: true, watch: true}) /* This will return map so you can do chaining */
+          .on('locationfound', function(e){
+              //var marker = L.marker([e.latitude, e.longitude]).bindPopup('Your are here :)');
+              var circle = L.circle([e.latitude, e.longitude], e.accuracy/4, {
+                  weight: 2,
+                  color: 'blue',
+                  fillColor: '#cacaca',
+                  fillOpacity: 0.2
+              }).bindPopup('Your are here :)');
+              //map.addLayer(marker);
+              map.addLayer(circle);
+          })
+         .on('locationerror', function(e){
+              console.log(e);
+              alert("Location access denied.");
+          });      
+          L.DomEvent.stopPropagation(ev);
+        });
         return img;
     },
 

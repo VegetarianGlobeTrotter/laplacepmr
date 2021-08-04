@@ -28,7 +28,7 @@
     "leaflet.locatecontrol": "^0.68.0",
     "request": "^2.87.0",
     "rxjs": "^6.4.0",
-    "xmldom": "^0.1.27",
+    "xmldom": "^0.6.0",
     "zone.js": "^0.9.1"
   },
   "devDependencies": {
